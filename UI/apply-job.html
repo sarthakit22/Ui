@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+    <form action="#">
+        <div class="form-group">
+          <label for="currentYear">Current Year:</label>
+          <input type="currentYear" class="form-control" id="currentYear">
+        </div>
+        <div class="form-group">
+          <label for="field">Field:</label>
+          <input type="field" class="form-control" id="field">
+        </div>
+        <button type="button" onclick="applyJob()" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+    <script>
+        function applyJob(){
+            var currentYear=$("#currentYear").val();
+            var field=$("#field").val();
+            $.ajaxSetup({
+   headers:{
+       'Content-Type':'application/json',
+   }
+});
+            $.post("localhost:8002/portal/apply-job",{currentYear:currentYear,field:field},function(response){console.log(response)});
+        }
+    </script>
+</body>
+</html>
