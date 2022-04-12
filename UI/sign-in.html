@@ -36,7 +36,12 @@
                 headers:{
                   'Content-Type': 'application/json',
                 },
-                success: function(resultData) { alert("Login Successfully") }
+                success: function(resultData) { if(resultData.success=="Success"){
+                  alert(resultData.message)
+                }
+              else{
+                alert(resultData.message)
+              }}
           });
           saveData.error(function(resultData){
                {alert("Enter Correct Email or Password")}
