@@ -27,26 +27,20 @@
         function signIn(){
             var email=$("#email").val();
             var password=$("#pwd").val();
-            $.ajaxSetup({
-   headers:{
-       'Content-Type':'application/json',
-   }
-});
-var data=JSON.stringify({
-  "email":email,
-  "password":password
-})
-            $.post("http://localhost:8002/portal/sign-in",{data},function(response){console.log(response)});
-            
-    //         $.ajax('http://localhost:8002/portal/sign-in', {type: 'POST',  // http method
-    //                                       data: {request:data},  // data to submit
-    //                success: function (data, status, xhr) {
-    //                $('p').append('status: ' + status + ', data: ' + data);
-    //          },
-    //          error: function (jqXhr, textStatus, errorMessage) {
-    //         $('p').append('Error' + errorMessage);
-    // }
-// });
+            var reqData = JSON.stringify({email:email, password:password})
+            var saveData = $.ajax({
+                type: 'POST',
+                url: "http://localhost:8002/portal/sign-in",
+                data: reqData,
+                dataType: "json",
+                headers:{
+                  'Content-Type': 'application/json',
+                },
+                success: function(resultData) { alert("Login Successfully") }
+          });
+          saveData.error(function(resultData){
+               {alert("Enter Correct Email or Password")}
+          });
         }
     </script>
 </body>

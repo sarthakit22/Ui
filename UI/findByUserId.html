@@ -32,12 +32,12 @@
     </div>
     <script>
         $( document ).ready(function() {
-        $.get("http://localhost:8002/portal/unique-user-detail",{},function(response)
+        $.get("http://localhost:8002/portal/unique-user-detail",{id:window.location.href.slice(window.location.href.indexOf("?")+1).split('&')[0].split("=")[1]},function(response)
         {
             $('#tableData').html("");
-        $.each(response.data,function(key,value){
-            $('#tableData').append('<tr> <th scope="row">'+value.id+'</a></th> <td>'+value.name+'</td> <td>'+value.dob+' </td> <td>'+value.age+'</td> <td>'+value.mobileNo+'</td> <td>'+value.email+' </td> <td>'+value.city+'</td> <td>'+value.state+'</td>  <td>'+value.role+'</td>  <td>'+value.approval+'</td></tr>')
-        })
+        
+            $('#tableData').append('<tr> <th scope="row">'+response.data.id+'</a></th> <td>'+response.data.name+'</td> <td>'+response.data.dob+' </td> <td>'+response.data.age+'</td> <td>'+response.data.mobileNo+'</td> <td>'+response.data.email+' </td> <td>'+response.data.city+'</td> <td>'+response.data.state+'</td>  <td>'+response.data.role+'</td>  <td>'+response.data.approval+'</td></tr>')
+        
         })
 });
     </script>
